@@ -5,6 +5,8 @@
   "author": "yurenju@gmail.com",
   "description": "A dayoff bot",
   "dependencies": {
+    "async": "^2.0.0-rc.4",
+    "google-spreadsheet": "^2.0.3",
     "hubot": "^2.19.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-google-images": "^0.2.6",

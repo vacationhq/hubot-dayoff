@@ -1,3 +1,4 @@
+var sheet = require('../libs/sheet');
 var moment = require('moment');
 moment.locale('zh-TW');
 
@@ -26,8 +27,16 @@ module.exports = function(robot) {
 
     ticket.type = res.match[1];
     ticket.state = 'getting approval'
-    robot.brain.set(username, ticket);
-    res.reply('好的，請假已經完成囉。已經幫你告知主管（還沒實作）');
+    ticket.begin = ticket.date.format('YYYY/MM/DD');
+    ticket.days = '1';
+    sheet(ticket, function(err) {
+      if (err) {
+        res.reply('出錯囉 ' + err);
+        return console.error(err);
+      }
+      robot.brain.remove(username);
+      res.reply('好的，請假已經完成囉。已經幫你填到 Google spreadsheet 囉');
+    });
   }
 
   robot.respond(/(.+)/, function(res) {

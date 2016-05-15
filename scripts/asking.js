@@ -7,7 +7,7 @@ var sheet;
 
 module.exports = function(robot) {
 
-    robot.respond(/剩.+假/, function(res) {
+    robot.respond(/.*剩.+假.*/, function(res) {
 
         res.reply('等等我我找一下⋯⋯');
 

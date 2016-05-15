@@ -30,7 +30,6 @@ module.exports = function(robot) {
                 }, function(err, rows) {
 
                     var userEmail = res.envelope.user.email_address;
-                    var userEmail = 'ly@ly.gov.tw';
                     for (var i = 0, l = rows.length; i < l; i++) {
                         if (rows[i]['fixeddata'] === userEmail) {
                             res.reply(

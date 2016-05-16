@@ -7,6 +7,7 @@ moment.locale('zh-TW');
 // spreadsheet key is the long id in the sheets URL
 var doc = new GoogleSpreadsheet(process.env.SPREADSHEET_KEY);
 var sheet;
+var types;
 
 module.exports = DataSource;
 
@@ -30,11 +31,42 @@ function DataSource() {
     });
   }
 
+  this.getTypes = function(cb) {
+    if (types) {
+      return cb(null, types);
+    }
+
+    async.waterfall([
+      function init(step) {
+        if (!worksheets) {
+          getSheets(step);
+        }
+      },
+      function getRows(step) {
+        var sheet = worksheets[7];
+        sheet.getRows({
+          offset: 0,
+          limit: 100,
+          orderby: 'col1'
+        }, step);
+      },
+      function normalize(rows, step) {
+        types = rows.map(function(row) {
+          return row.type;
+        });
+        step(null, types);
+      }
+    ], cb);
+  };
+
   this.takeDayoff = function(ticket, cb) {
     async.series([
       function init(step) {
         if (!worksheets) {
           getSheets(step);
+        }
+        else {
+          step();
         }
       },
       function appendRow(step) {

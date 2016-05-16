@@ -1,4 +1,4 @@
-var sheet = require('../libs/sheet');
+var DataSource = require('../libs/datasource');
 var moment = require('moment');
 moment.locale('zh-TW');
 
@@ -29,7 +29,8 @@ module.exports = function(robot) {
     ticket.state = 'getting approval'
     ticket.begin = ticket.date.format('YYYY/MM/DD');
     ticket.days = '1';
-    sheet(ticket, function(err) {
+    var source = new DataSource();
+    source.takeDayoff(ticket, function(err) {
       if (err) {
         res.reply('出錯囉 ' + err);
         return console.error(err);

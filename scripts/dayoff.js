@@ -18,7 +18,7 @@ module.exports = function(robot) {
       res.reply('你想要請 ' + date.format('YYYY MMMM Do (dddd)') + ' 嗎？是什麼假呢？');
     }
     else {
-      res.reply('無法辨識你請假的日期喔⋯')
+      res.reply('無法辨識你請假的日期喔⋯');
     }
   }
 
@@ -26,7 +26,7 @@ module.exports = function(robot) {
     var username = res.envelope.user.name;
 
     ticket.type = res.match[1];
-    ticket.state = 'getting approval'
+    ticket.state = 'getting approval';
     ticket.begin = ticket.date.format('YYYY/MM/DD');
     ticket.days = '1';
     var source = new DataSource();
@@ -46,10 +46,10 @@ module.exports = function(robot) {
     var match = res.message.text.match(/(.+)請假/);
 
     if (match) {
-      first(res, match)
+      first(res, match);
     }
     else if (ticket && ticket.state === 'asking type') {
       second(res, ticket);
     }
   });
-}
+};

@@ -21,7 +21,7 @@ function DataSource() {
       },
       function getInfoAndWorksheets(step) {
         doc.getInfo(function(err, info) {
-          worksheets = info.worksheets
+          worksheets = info.worksheets;
           step(err);
         });
       }
@@ -52,16 +52,16 @@ function DataSource() {
         });
 
         var row = {};
-        row[headers['timestamp']] = moment().format('YYYY/MM/DD A h:mm:ss')
+        row[headers['timestamp']] = moment().format('YYYY/MM/DD A h:mm:ss');
         row[headers['email']] = ticket.email;
         row[headers['type']] = ticket.type;
         row[headers['begin']] = ticket.begin;
         row[headers['days']] = ticket.days;
 
-        sheet.addRow(row, step)
+        sheet.addRow(row, step);
       }
     ], cb);
-  }
+  };
 
   this.asking = function(email, cb) {
     async.waterfall([
@@ -86,12 +86,12 @@ function DataSource() {
               personal: rows[i]['事假personal'],
               sick: rows[i]['有薪病假sick'],
               flexibletimeoff: rows[i]['彈性休假flexibletimeoff']
-            }
+            };
             return step(null, info);
           }
         }
         return step(null, null);
       }
     ], cb);
-  }
+  };
 }

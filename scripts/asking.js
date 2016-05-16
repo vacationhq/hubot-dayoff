@@ -19,10 +19,10 @@ module.exports = function(robot) {
                       ' 特休 ' + info.annual +
                       ' 事假 ' + info.personal +
                       ' 有薪病假 ' + info.sick +
-                      ' 彈性休假 ' + info.flexibletimeoff
+                      ' 彈性休假 ' + info.flexibletimeoff +
                       '，快休完他們！';
         return res.reply(message);
       }
     });
   });
-}
+};

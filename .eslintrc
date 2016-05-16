@@ -1,0 +1,20 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "max-len": [2, 80],
+    "semi": [2, "always"],
+    "indent": [2, 2, { "SwitchCase": 1 }],
+    "quotes": [2, "single", "avoid-escape"],
+    "comma-style": [2, "last"],
+    "curly": [2, "multi-line"],
+    "brace-style": [2,
+      "stroustrup", {
+      "allowSingleLine": true
+    }],
+    "space-after-keywords": 2,
+    "space-before-blocks": 2
+  }
+}

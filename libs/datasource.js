@@ -46,8 +46,7 @@ function DataSource() {
         var sheet = worksheets[7];
         sheet.getRows({
           offset: 0,
-          limit: 100,
-          orderby: 'col1'
+          limit: 100
         }, step);
       },
       function normalize(rows, step) {

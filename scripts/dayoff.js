@@ -39,7 +39,7 @@ module.exports = function(robot) {
     var username = res.envelope.user.name;
     var index = parseInt(res.match[1]);
 
-    ticket.type = types[index+1];
+    ticket.type = types[index-1];
     ticket.state = 'getting approval';
     ticket.begin = ticket.date.format('YYYY/MM/DD');
     ticket.days = '1';

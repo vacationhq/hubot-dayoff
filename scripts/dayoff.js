@@ -49,7 +49,11 @@ module.exports = function(robot) {
         return console.error(err);
       }
       robot.brain.remove(username);
-      res.reply('好的，請假已經完成囉。已經幫你填到 Google spreadsheet 囉');
+      var date = ticket.date.format('YYYY MMMM Do (dddd)');
+      var message = '好的，你在 ' + date +
+                    ' 請的 ' + ticket.type +
+                    ' 已經完成囉。已經幫你填到 Google spreadsheet 囉';
+      res.reply(message);
     });
   }
 
